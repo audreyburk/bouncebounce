@@ -98,7 +98,12 @@ function haveCollided(a, b) {
   let x2 = b.x;
   let y1 = a.y;
   let y2 = b.y;
-  return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) ) <= (a.r + b.r);
+  if(x1 < x2 + a.r + b.r &&
+     x1 + b.r + a.r > x2 &&
+     y1 < y2 + a.r + b.r &&
+     b.r + a.r + y1 > y2){
+       return Math.sqrt( Math.pow((x1-x2), 2) + Math.pow((y1-y2), 2) ) <= (a.r + b.r);
+  } else return false;
 }
 
 function bounce(a, b) {
