@@ -19,6 +19,7 @@ function init() {
 }
 
 function run() {
+  acceleratePlayer();
   movePlayer();
   moveBalls();
   checkCollisions();
@@ -49,12 +50,21 @@ function createThangs() {
   }
 }
 
-function movePlayer() {
-  if(left && player.dx > -3.5) player.dx -= 0.1;
-  if(right && player.dx < 3.5) player.dx += 0.1;
-  if(up && player.dy > -3.5) player.dy -= 0.1;
-  if(down && player.dy < 3.5) player.dy += 0.1;
+function acceleratePlayer() {
+  if (left && player.dx > -3.5) player.dx -= 0.1;
+  if (right && player.dx < 3.5) player.dx += 0.1;
+  if (up && player.dy > -3.5) player.dy -= 0.1;
+  if (down && player.dy < 3.5) player.dy += 0.1;
 
+  if (player.dx !== 0 && !(left || right)){
+    player.dx += ( player.dx > 0 ? -0.02 : 0.02 );
+  }
+  if (player.dy !== 0 && !(up || down)){
+    player.dy += ( player.dy > 0 ? -0.02 : 0.02 );
+  }
+}
+
+function movePlayer() {
   if (player.dx < 0){
     if (player.x > player.r){
       player.x += player.dx;
