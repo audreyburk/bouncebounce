@@ -32,8 +32,8 @@ function createThangs() {
   player = {
     x: width/2,
     y: height/2,
-    dx: 3,
-    dy: 3,
+    dx: 0,
+    dy: 0,
     r: 20
   };
 
@@ -50,17 +50,29 @@ function createThangs() {
 }
 
 function movePlayer() {
-  if(left && player.x > player.r){
-    player.x -= player.dx;
+  if(left && player.dx > -3.5) player.dx -= 0.1;
+  if(right && player.dx < 3.5) player.dx += 0.1;
+  if(up && player.dy > -3.5) player.dy -= 0.1;
+  if(down && player.dy < 3.5) player.dy += 0.1;
+
+  if (player.dx < 0){
+    if (player.x > player.r){
+      player.x += player.dx;
+    } else player.dx *= -1;
+  } else if (player.dx > 0){
+    if (player.x < (width - player.r)){
+      player.x += player.dx;
+    } else player.dx *= -1;
   }
-  if(right && player.x < (width - player.r)){
-    player.x += player.dx;
-  }
-  if(down && player.y < (height - player.r)){
-    player.y += player.dy;
-  }
-  if(up && player.y > player.r){
-    player.y -= player.dy;
+
+  if (player.dy < 0){
+    if(player.y > player.r){
+      player.y += player.dy;
+    } else player.dy *= -1;
+  } else if (player.dy > 0){
+    if(player.y < (height - player.r)){
+      player.y += player.dy;
+    } else player.dy *= -1;
   }
 }
 
@@ -98,6 +110,7 @@ function haveCollided(a, b) {
   let x2 = b.x;
   let y1 = a.y;
   let y2 = b.y;
+
   if(x1 < x2 + a.r + b.r &&
      x1 + b.r + a.r > x2 &&
      y1 < y2 + a.r + b.r &&
@@ -107,7 +120,7 @@ function haveCollided(a, b) {
 }
 
 function bounce(a, b) {
-  // console.log(`Hit!`);
+  // maaaaaaaaaaaaaath
 }
 
 function hitPlayer(num) {
