@@ -5,6 +5,8 @@
   <title>Bounce</title>
   <link rel="stylesheet" href="style.css" type="text/css"/>
 
+  <script type="text/javascript" src="cookies.js"></script>
+
   <script type="text/javascript" src="listener.js"></script>
   <script type="text/javascript" src="player.js"></script>
   <script type="text/javascript" src="ball.js"></script>
@@ -16,8 +18,8 @@
   <div id="wrapper">
     <aside>
       <header id="title">BOUNCE BOUNCE BOUNCE</header>
-      <div id="time">go go go</div>
-      <div id="scores">Chrome doesn't accept local cookies :(</div>
+      <div id="currentScore">go go go</div>
+      <div id="scores">Run chrome with<br>"--enable-file-cookies" to enable high scores.</div>
     </aside>
     <canvas id="myCanvas" width="600" height="600"></canvas>
   </div>
