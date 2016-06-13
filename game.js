@@ -16,6 +16,7 @@ Game.init = function(){
   window.focus();
   document.getElementById("playAgain").style.display = "none";
   document.getElementById("scores").style.height = "367px";
+  document.getElementById("currentScore").style.color = "white";
   game = new Game;
   game.showScores();
   game.run();
