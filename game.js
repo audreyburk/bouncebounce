@@ -13,6 +13,7 @@ function Game() {
 }
 
 Game.init = function(){
+  window.focus();
   game = new Game;
   game.showScores();
   game.run();
@@ -68,9 +69,9 @@ Game.prototype.showCurrentScore = function () {
 };
 
 Game.prototype.showScores = function () {
-  let allScores = "";
+  let allScores = "High Scores:\n\n";
   this.scores.forEach((score, i) => {
-    allScores += `${i+1}: ${score}<br>`;
+    allScores += `${i+1}: ${score}\n`;
   });
   document.getElementById("scores").textContent = allScores;
 };
@@ -84,7 +85,6 @@ Game.prototype.updateHighScores = function(){
 Game.prototype.lose = function () {
   document.getElementById("currentScore").style.color = "red";
   this.updateHighScores();
-  alert(Cookies.getJSON('scores'));
   this.showScores();
   this.running = false;
 };
