@@ -29,7 +29,7 @@ Ball.makeBalls = function(canvas, n) {
       dx: Math.cos(angle * (Math.PI / 180)) * velocity,
       dy: Math.sin(angle * (Math.PI / 180)) * velocity,
       r: 20,
-      color: (i % 2 === 0 ? "blue" : "blue")
+      color: (i % 2 === 0 ? "blue" : "red")
     });
     balls.push(ball);
   }
