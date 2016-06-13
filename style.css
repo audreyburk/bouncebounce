@@ -40,5 +40,15 @@ aside > * {
 }
 
 #scores {
-  height: 367px;
+  height: 306px;
+  line-height: 24px;
+}
+
+#playAgain {
+  color: rgb(50, 200, 255);
+}
+
+#playAgain:hover {
+  background-color: #000011;
+  cursor: pointer;
 }
