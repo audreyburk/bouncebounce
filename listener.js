@@ -11,10 +11,10 @@ function mouseDownHandler(e) {
 
 function keyDownHandler(e) {
   switch(e.keyCode){
-    case 37: keyStates["left"]  = true; break;
-    case 38: keyStates["up"]    = true; break;
-    case 39: keyStates["right"] = true; break;
-    case 40: keyStates["down"]  = true; break;
+    case 37: keyStates["left"]  = true; e.preventDefault(); break;
+    case 38: keyStates["up"]    = true; e.preventDefault(); break;
+    case 39: keyStates["right"] = true; e.preventDefault(); break;
+    case 40: keyStates["down"]  = true; e.preventDefault(); break;
   }
 }
 
