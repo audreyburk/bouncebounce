@@ -14,6 +14,8 @@ function Game() {
 
 Game.init = function(){
   window.focus();
+  document.getElementById("playAgain").style.display = "none";
+  document.getElementById("scores").style.height = "367px";
   game = new Game;
   game.showScores();
   game.run();
@@ -69,11 +71,11 @@ Game.prototype.showCurrentScore = function () {
 };
 
 Game.prototype.showScores = function () {
-  let allScores = "High Scores:\n\n";
+  let allScores = "<p>HIGH SCORES:</p>";
   this.scores.forEach((score, i) => {
-    allScores += `${i+1}: ${score}\n`;
+    allScores += `<p>${i+1}: ${score}</p>`;
   });
-  document.getElementById("scores").textContent = allScores;
+  document.getElementById("scores").innerHTML = allScores;
 };
 
 Game.prototype.updateHighScores = function(){
@@ -84,6 +86,8 @@ Game.prototype.updateHighScores = function(){
 
 Game.prototype.lose = function () {
   document.getElementById("currentScore").style.color = "red";
+  document.getElementById("playAgain").style.display = "block";
+  document.getElementById("scores").style.height = "306px";
   this.updateHighScores();
   this.showScores();
   this.running = false;

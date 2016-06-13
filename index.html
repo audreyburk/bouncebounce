@@ -7,19 +7,20 @@
 
   <script type="text/javascript" src="cookies.js"></script>
 
-  <script type="text/javascript" src="listener.js"></script>
   <script type="text/javascript" src="player.js"></script>
   <script type="text/javascript" src="ball.js"></script>
   <script type="text/javascript" src="canvas.js"></script>
   <script type="text/javascript" src="game.js"></script>
+  <script type="text/javascript" src="listener.js"></script>
 </head>
 
-<body onload="Game.init()">
+<body>
   <div id="wrapper">
     <aside>
       <header id="title">BOUNCE BOUNCE BOUNCE</header>
       <div id="currentScore">go go go</div>
-      <div id="scores">Run chrome with<br>"--enable-file-cookies" to enable high scores.</div>
+      <div id="scores">scores here</div>
+      <div id="playAgain" onclick="Game.init()">CLICK TO PLAY</div>
     </aside>
     <canvas id="myCanvas" width="600" height="600"></canvas>
   </div>
