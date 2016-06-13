@@ -93,7 +93,8 @@ Game.prototype.showScores = function () {
 
 Game.prototype.updateHighScores = function(){
   this.scores.push(this.score);
-  this.scores = this.scores.sort((a, b) => a + b).slice(0, 10);
+  this.scores.sort((a, b) => b - a);
+  this.scores = this.scores.slice(0, 10);
   Cookies.set('scores', this.scores);
 }
 
