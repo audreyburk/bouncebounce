@@ -2,16 +2,43 @@
   padding: 0;
   margin: 0;
   background: #000;
+  color: white;
+  font-family: "Open Sans", sans-serif;
 }
 
 canvas {
-  display: block;
-  margin: 0 auto;
   border: 1px solid white;
 }
 
-h1 { display: block;
-  color: white;
-  margin: 0 auto;
-  width: 300px;
+aside {
+  width: 160px;
+  height: 580px;
+}
+
+aside > * {
+  display: block;
+  padding: 10px;
+  border: 1px solid white;
+  margin-bottom: 20px;
+}
+
+#wrapper {
+  display: block;
+  margin: 20px auto;
+  width: 900px;
+  height: 700px;
+}
+
+#wrapper > * {
+  vertical-align: top;
+  display: inline-block;
+  margin: 5px;
+}
+
+#title {
+  font: 2em "Open Sans", sans-serif;
+}
+
+#scores {
+  height: 367px;
 }
