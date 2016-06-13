@@ -2,7 +2,12 @@ keyStates = {};
 
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("mousedown", mouseDownHandler, false);
 
+function mouseDownHandler(e) {
+    window.focus();
+    e.preventDefault();
+}
 
 function keyDownHandler(e) {
   switch(e.keyCode){
