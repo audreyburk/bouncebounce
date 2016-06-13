@@ -4,24 +4,23 @@ function Game() {
 
   this.canvas = new Canvas;
   this.player = new Player(this.canvas);
-  this.balls = Ball.makeBalls(this.canvas, 30);
+  this.balls = Ball.makeBalls(this.canvas, 20);
 
-  this.startTime = Date.now();
-  this.elapsedTime = 0;
+  this.score = 0;
+  this.scores = Cookies.getJSON('scores') || [];
 
   this.running = true;
 }
 
 Game.init = function(){
   game = new Game;
-  console.log(this.balls);
+  game.showScores();
   game.run();
 };
 
 Game.prototype.run = function () {
   this.draw();
-  this.changeTime();
-  this.showTime();
+  this.showCurrentScore();
   this.player.accelerate();
   this.player.move(this.canvas);
   this.balls.forEach(ball => ball.move(this.canvas));
@@ -53,6 +52,7 @@ Game.prototype.hitPlayer = function(num) {
     this.lose();
   } else if (ball.color === "blue"){
     delete this.balls[num];
+    this.score++;
     this.player.r += 3;
   }
 };
@@ -63,24 +63,28 @@ Game.prototype.draw = function() {
   this.balls.forEach(ball => ball.draw(this.canvas));
 };
 
-Game.prototype.changeTime = function () {
-  this.elapsedTime = Math.floor((Date.now() - this.startTime)/1000);
+Game.prototype.showCurrentScore = function () {
+  document.getElementById("currentScore").textContent = `SCORE: ${this.score}`;
 };
 
-Game.prototype.showTime = function () {
-  const displayTime = Game.stringifyTime(this.elapsedTime);
-  document.getElementById("time").textContent = displayTime;
+Game.prototype.showScores = function () {
+  let allScores = "";
+  this.scores.forEach((score, i) => {
+    allScores += `${i+1}: ${score}<br>`;
+  });
+  document.getElementById("scores").textContent = allScores;
 };
 
-Game.stringifyTime = function(time){
-  const minutes = Math.floor(time/60);
-  const seconds = time - minutes * 60;
-  const minutesStr = ("0" + minutes).slice(-2);
-  const secondsStr = ("0" + seconds).slice(-2);
-  return `${minutesStr}:${secondsStr}`;
+Game.prototype.updateHighScores = function(){
+  this.scores.push(this.score);
+  this.scores = this.scores.sort((a, b) => a + b).slice(0, 10);
+  Cookies.set('scores', this.scores);
 }
 
 Game.prototype.lose = function () {
-  document.getElementById("time").style.color = "red";
+  document.getElementById("currentScore").style.color = "red";
+  this.updateHighScores();
+  alert(Cookies.getJSON('scores'));
+  this.showScores();
   this.running = false;
 };
