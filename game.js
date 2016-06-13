@@ -39,6 +39,7 @@ Game.prototype.checkCollisions = function() {
   for(let i = 0; i < length; i++){
     if(balls[i].hasCollidedWith(this.player)){
       this.hitPlayer(i);
+      this.spawnBall();
       if (!balls[i]) continue;
     }
     // for(let j = i+1; j < length; j++){
@@ -46,7 +47,7 @@ Game.prototype.checkCollisions = function() {
     //   if(haveCollided(balls[i], balls[j])) bounce(balls[i], balls[j]);
     // }
   }
-  this.balls = balls.filter( Boolean );
+  this.balls = this.balls.filter( el => el !== undefined );
 };
 
 Game.prototype.hitPlayer = function(num) {
@@ -57,6 +58,18 @@ Game.prototype.hitPlayer = function(num) {
     delete this.balls[num];
     this.score++;
     this.player.r += 3;
+  }
+};
+
+Game.prototype.spawnBall = function () {
+  let chance = 20 - (this.balls.length);
+  let rand1 = Math.floor(Math.random()*10);
+  let rand2 = Math.floor(Math.random()*10);
+  if(chance > rand1){
+    this.balls = this.balls.concat(Ball.makeBalls(this.canvas, 1));
+    if(chance > rand2){
+      this.balls = this.balls.concat(Ball.makeBalls(this.canvas, 1));
+    }
   }
 };
 
