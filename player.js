@@ -1,10 +1,9 @@
 function Player(canvas) {
   this.x = canvas.width/2;
   this.y = canvas.height/2;
-  this.dx = 4;
+  this.dx = 0;
   this.dy = 0;
   this.r = 20;
-  this.maxVelocity = 3;
 }
 
 Player.prototype.accelerate = function(){
